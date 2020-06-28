@@ -4,7 +4,9 @@
    "description": "",
    "main": "index.js",
    "scripts": {
-      "start": "cd server && npm run start"
+      "start": "cd server && npm run start",
+      "start:client": "cd client && npm run build && npm run start",
+      "dev": "concurrently --kill-others-on-fail \"npm run start:client\" \"cd server && npm run dev\""
    },
    "repository": {
       "type": "git",
@@ -15,5 +17,8 @@
    "bugs": {
       "url": "https://github.com/ashish-puttaa/natours-react/issues"
    },
-   "homepage": "https://github.com/ashish-puttaa/natours-react#readme"
+   "homepage": "https://github.com/ashish-puttaa/natours-react#readme",
+   "devDependencies": {
+      "concurrently": "^5.2.0"
+   }
 }

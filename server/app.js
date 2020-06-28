@@ -34,6 +34,9 @@ app.options('*', cors());
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve client static files
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 // Security HTTP Headers
 app.use(helmet());
 
@@ -103,8 +106,12 @@ app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
 // Undefined (404) routes
-app.all('*', (req, res, next) => {
+app.use('/api', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 app.use(globalErrorHandler);
