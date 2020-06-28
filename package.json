@@ -1,0 +1,19 @@
+{
+   "name": "natours-api",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "start": "cd server && npm run start"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ashish-puttaa/natours-react.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/ashish-puttaa/natours-react/issues"
+   },
+   "homepage": "https://github.com/ashish-puttaa/natours-react#readme"
+}
