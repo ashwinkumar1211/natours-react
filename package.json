@@ -5,8 +5,9 @@
    "main": "index.js",
    "scripts": {
       "start": "cd server && npm run start",
-      "start:client": "cd client && npm run build && npm run start",
-      "dev": "concurrently --kill-others-on-fail \"npm run start:client\" \"cd server && npm run dev\""
+      "start:client": "cd client && npm run start",
+      "dev": "concurrently --kill-others-on-fail \"npm run start:client\" \"cd server && npm run dev\"",
+      "prod": "cd client && npm run build && cd ../server && npm run dev"
    },
    "repository": {
       "type": "git",
