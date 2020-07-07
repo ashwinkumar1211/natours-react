@@ -106,7 +106,7 @@ export const Ratings = styled.p`
    grid-row: 2 / 3;
 `;
 
-export const Button = styled(Buttons.Green)`
+export const Button = styled(Buttons.Green).attrs({ small: 'true' })`
    grid-row: 1 / 3;
    justify-self: end;
    align-self: center;

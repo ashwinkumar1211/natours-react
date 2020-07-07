@@ -19,8 +19,6 @@ const Button = styled.a`
       ${(props) =>
          props.small &&
          css`
-            background-color: #55c57a;
-            color: #fff;
             font-size: 1.4rem;
             padding: 1.25rem 3rem
             transition: all 0.2s;
@@ -30,12 +28,6 @@ const Button = styled.a`
    &:hover {
       transform: translateY(-3px);
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-
-      ${(props) =>
-         props.small &&
-         css`
-            background-color: #7dd56f;
-         `}
    }
 
    &:active {
@@ -45,7 +37,6 @@ const Button = styled.a`
 
    &:focus {
       outline: none;
-      background-color: #2e864b;
    }
 `;
 
@@ -55,18 +46,17 @@ export const White = styled(Button)`
    background-color: #fff;
    color: #777;
 
-   &::after {
-      background-color: #fff;
+   &:focus {
+      background-color: #444;
+      color: white;
    }
 `;
 
-export const Green = styled(Button).attrs({ small: 'true' })`
+export const Green = styled(Button)`
    background-color: #55c57a;
    color: #fff;
 
-   &::after {
-      background-color: #55c57a;
+   &:focus {
+      background-color: #2e864b;
    }
 `;
-
-// SIZES
