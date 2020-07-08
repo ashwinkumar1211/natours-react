@@ -1,63 +1,78 @@
 import React from 'react';
+import moment from 'moment';
 
-import * as Card from './tour-card.styles';
-import * as Heading from '../../styles/_headings';
+import { Wrapper, Header, Image, Title } from './tour-card.styles'; // Header
+import { Body, SubHeading, Description, Detail, Icon } from './tour-card.styles'; // Body
+import { Footer, Price, Ratings, Value, Text, Button } from './tour-card.styles'; // Footer
 
-const TourCard = () => (
-   <Card.Container>
-      {/* CARD HEADER */}
-      <Card.Header>
-         <Card.Picture>
-            <div>&nbsp;</div>
-            <img src="img/tours/tour-1-cover.jpg" alt="Tour 1" />
-         </Card.Picture>
+const TourCard = ({ tour }) => {
+   const {
+      imageCover,
+      name,
+      difficulty,
+      duration,
+      summary,
+      price,
+      ratingsQuantity,
+      ratingsAverage,
+   } = tour;
 
-         <Heading.Tertiary>
-            <span>The Forest Hiker</span>
-         </Heading.Tertiary>
-      </Card.Header>
+   const renderDetails = () => {
+      const icons = ['map-pin', 'calendar', 'flag', 'user'];
 
-      <Card.Details>
-         <Card.SubHeading>Easy 5-day tour</Card.SubHeading>
-         <Card.Text>Breathtaking hike through the Canadian Banff National Park</Card.Text>
-         <Card.Data>
-            <Card.Icon>
-               <use xlinkHref="img/icons.svg#icon-map-pin"></use>
-            </Card.Icon>
-            <span>Banff, Canada</span>
-         </Card.Data>
-         <Card.Data>
-            <Card.Icon>
-               <use xlinkHref="img/icons.svg#icon-calendar"></use>
-            </Card.Icon>
-            <span>April 2021</span>
-         </Card.Data>
-         <Card.Data>
-            <Card.Icon>
-               <use xlinkHref="img/icons.svg#icon-flag"></use>
-            </Card.Icon>
-            <span>3 stops</span>
-         </Card.Data>
-         <Card.Data>
-            <Card.Icon>
-               <use xlinkHref="img/icons.svg#icon-user"></use>
-            </Card.Icon>
-            <span>25 people</span>
-         </Card.Data>
-      </Card.Details>
+      const { startLocation, startDates, locations, maxGroupSize } = tour;
 
-      <Card.Footer>
-         <p>
-            <Card.FooterValue>$297</Card.FooterValue>
-            <Card.FooterText>per person</Card.FooterText>
-         </p>
-         <Card.Ratings>
-            <Card.FooterValue>4.9</Card.FooterValue>
-            <Card.FooterText>rating (21)</Card.FooterText>
-         </Card.Ratings>
-         <Card.Button href="#">Details</Card.Button>
-      </Card.Footer>
-   </Card.Container>
-);
+      const location = startLocation.description;
+      const date = moment(startDates[0]).format('MMM YYYY');
+      const stops = `${locations.length} stops`;
+      const maxSize = `${maxGroupSize} people`;
+
+      return [location, date, stops, maxSize].map((item, i) => (
+         <Detail>
+            <Icon>
+               <use xlinkHref={`img/icons.svg#icon-${icons[i]}`}></use>
+            </Icon>
+            <span>{item}</span>
+         </Detail>
+      ));
+   };
+
+   return (
+      <Wrapper>
+         {/* CARD HEADER */}
+         <Header>
+            <Image>
+               <div>&nbsp;</div>
+               <img src={`img/tours/${imageCover}`} alt="Tour 1" />
+            </Image>
+
+            <Title>
+               <span>{name}</span>
+            </Title>
+         </Header>
+
+         {/* CARD BODY */}
+         <Body>
+            <SubHeading>{`${difficulty} ${duration}-day tour`}</SubHeading>
+            <Description>{summary}</Description>
+
+            {renderDetails()}
+         </Body>
+
+         {/* CARD FOOTER */}
+         <Footer>
+            <Price>
+               <Value>${price}</Value>
+               <Text>per person</Text>
+            </Price>
+            <Ratings>
+               <Value>{ratingsAverage}</Value>
+               <Text>{`rating (${ratingsQuantity})`}</Text>
+            </Ratings>
+            <Button href="#">Details</Button>
+         </Footer>
+      </Wrapper>
+   );
+};
 
 export default TourCard;

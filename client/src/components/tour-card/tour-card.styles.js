@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+
 import * as Buttons from '../../styles/_buttons';
+import * as Heading from '../../styles/_headings';
 
-// CARD CONTAINER
+// CARD WRAPPER
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
    max-width: 35rem;
    margin-right: 10rem;
    margin-bottom: 10rem;
@@ -22,7 +24,7 @@ export const Header = styled.div`
    position: relative;
 `;
 
-export const Picture = styled.div`
+export const Image = styled.div`
    position: relative;
    height: 22rem;
    clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
@@ -42,9 +44,11 @@ export const Picture = styled.div`
    }
 `;
 
+export const Title = styled(Heading.Tertiary)``;
+
 // CARD DETAILS
 
-export const Details = styled.div`
+export const Body = styled.div`
    display: grid;
    grid-template-columns: 1fr 1fr;
    grid-row-gap: 1.75rem;
@@ -59,7 +63,7 @@ export const SubHeading = styled.h4`
    font-weight: 700;
 `;
 
-export const Text = styled.p`
+export const Description = styled.p`
    grid-column: 1 / -1;
    font-size: 1.5rem;
    font-style: italic;
@@ -67,7 +71,7 @@ export const Text = styled.p`
    margin-bottom: 0.75rem;
 `;
 
-export const Data = styled.div`
+export const Detail = styled.div`
    display: flex;
    align-items: center;
    font-size: 1.3rem;
@@ -94,13 +98,15 @@ export const Footer = styled.div`
    margin-top: auto;
 `;
 
-export const FooterValue = styled.span`
+export const Value = styled.span`
    font-weight: 700;
 `;
 
-export const FooterText = styled.span`
+export const Text = styled.span`
    color: #999;
 `;
+
+export const Price = styled.p``;
 
 export const Ratings = styled.p`
    grid-row: 2 / 3;
