@@ -7,8 +7,6 @@ import * as Heading from '../../styles/_headings';
 
 export const Wrapper = styled.div`
    max-width: 35rem;
-   margin-right: 10rem;
-   margin-bottom: 10rem;
    border-radius: 3px;
    overflow: hidden;
 
@@ -100,6 +98,7 @@ export const Footer = styled.div`
 
 export const Value = styled.span`
    font-weight: 700;
+   margin-right: 4px;
 `;
 
 export const Text = styled.span`

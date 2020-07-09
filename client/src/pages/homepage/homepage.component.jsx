@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import TourCard from '../../components/tour-card/tour-card.component';
+import Spinner from '../../components/spinner/spinner.component';
 
 import { fetchToursStart } from '../../redux/tour/tour.actions';
+
+import { Wrapper, SpinnerContainer } from './homepage.styles';
 
 const HomePage = ({ tours, isFetching, fetchToursStart }) => {
    useEffect(() => {
@@ -11,13 +14,15 @@ const HomePage = ({ tours, isFetching, fetchToursStart }) => {
    }, [fetchToursStart]);
 
    return (
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <Wrapper>
          {isFetching ? (
-            <p>Loading...</p>
+            <SpinnerContainer>
+               <Spinner size={80} />
+            </SpinnerContainer>
          ) : (
             tours.map((tour) => <TourCard key={tour.id} tour={tour} />)
          )}
-      </div>
+      </Wrapper>
    );
 };
 

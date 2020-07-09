@@ -28,7 +28,7 @@ const TourCard = ({ tour }) => {
       const maxSize = `${maxGroupSize} people`;
 
       return [location, date, stops, maxSize].map((item, i) => (
-         <Detail>
+         <Detail key={i}>
             <Icon>
                <use xlinkHref={`img/icons.svg#icon-${icons[i]}`}></use>
             </Icon>
@@ -66,7 +66,7 @@ const TourCard = ({ tour }) => {
                <Text>per person</Text>
             </Price>
             <Ratings>
-               <Value>{ratingsAverage}</Value>
+               <Value>{ratingsAverage.toFixed(1)}</Value>
                <Text>{`rating (${ratingsQuantity})`}</Text>
             </Ratings>
             <Button href="#">Details</Button>
