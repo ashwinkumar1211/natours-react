@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import SVG from '../svg/svg.component';
+
 export const Wrapper = styled.div`
    background-color: transparent;
    width: 80%;
@@ -91,17 +93,14 @@ export const SearchWrapper = styled.form`
    justify-content: center;
 `;
 
-export const SearchButton = styled.button`
+export const SearchButton = styled(SVG).attrs((props) => ({ url: props.url }))`
    background: none;
    border: none;
-   margin-right: 0.8rem;
-   transform: translateY(1px);
+   cursor: pointer;
 
-   svg {
-      height: 2rem;
-      width: 2rem;
-      fill: #f7f7f7;
-   }
+   height: 2rem;
+   width: 2rem;
+   fill: #f7f7f7;
 `;
 
 export const SearchInput = styled.input`
@@ -113,7 +112,6 @@ export const SearchInput = styled.input`
 
    border: 1px solid currentColor;
    border-radius: 20px;
-   /* padding: 0.7rem 2rem; */
    padding: 0.8rem 2rem;
 
    width: 90%;

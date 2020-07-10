@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import SVG from '../svg/svg.component';
+
 import * as Buttons from '../../styles/_buttons';
 import * as Heading from '../../styles/_headings';
 
@@ -75,7 +77,7 @@ export const Detail = styled.div`
    font-size: 1.3rem;
 `;
 
-export const Icon = styled.svg`
+export const Icon = styled(SVG).attrs((props) => ({ url: props.url }))`
    margin-right: 0.7rem;
    height: 2rem;
    width: 2rem;

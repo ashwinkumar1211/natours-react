@@ -2,8 +2,8 @@ import React from 'react';
 
 import { SpinnerOverlay, SpinnerSVG } from './spinner.styles';
 
-const Spinner = ({ size }) => (
-   <SpinnerOverlay size={size}>
+const Spinner = ({ className, size }) => (
+   <SpinnerOverlay size={size} className={className}>
       <SpinnerSVG />
    </SpinnerOverlay>
 );

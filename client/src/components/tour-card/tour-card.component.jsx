@@ -29,9 +29,7 @@ const TourCard = ({ tour }) => {
 
       return [location, date, stops, maxSize].map((item, i) => (
          <Detail key={i}>
-            <Icon>
-               <use xlinkHref={`img/icons.svg#icon-${icons[i]}`}></use>
-            </Icon>
+            <Icon url={`img/icons.svg#icon-${icons[i]}`} />
             <span>{item}</span>
          </Detail>
       ));

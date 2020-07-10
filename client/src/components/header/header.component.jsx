@@ -19,11 +19,7 @@ const Header = () => (
 
       <SearchWrapper>
          <SearchInput type="text" placeholder="Search tours" />
-         <SearchButton>
-            <svg>
-               <use xlinkHref="img/icons.svg#icon-search"></use>
-            </svg>
-         </SearchButton>
+         <SearchButton url={`img/icons.svg#icon-search`} />
       </SearchWrapper>
 
       <UserNav>
