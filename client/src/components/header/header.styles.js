@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import SVG from '../svg/svg.component';
 
@@ -25,7 +26,7 @@ export const Wrapper = styled.div`
    }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
    height: 3.2rem;
    order: -1;
    cursor: pointer;
@@ -37,7 +38,7 @@ export const Logo = styled.div`
 
 // Link
 
-export const NavLink = styled.a`
+export const NavLink = styled(Link)`
    color: #f7f7f7;
    text-transform: uppercase;
    font-size: 1.6rem;
@@ -52,7 +53,7 @@ export const NavLink = styled.a`
    cursor: pointer;
 
    ${(props) =>
-      props.cta &&
+      props.cta === true &&
       css`
          padding: 0.7rem 2.5rem;
          border-radius: 10rem;

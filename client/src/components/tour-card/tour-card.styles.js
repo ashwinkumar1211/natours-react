@@ -44,7 +44,13 @@ export const Image = styled.div`
    }
 `;
 
-export const Title = styled(Heading.Tertiary)``;
+export const Title = styled(Heading.Tertiary)`
+   width: 70%;
+   text-align: right;
+   position: absolute;
+   bottom: 1rem;
+   right: 2rem;
+`;
 
 // CARD DETAILS
 
@@ -77,7 +83,7 @@ export const Detail = styled.div`
    font-size: 1.3rem;
 `;
 
-export const Icon = styled(SVG).attrs((props) => ({ url: props.url }))`
+export const Icon = styled(SVG)`
    margin-right: 0.7rem;
    height: 2rem;
    width: 2rem;

@@ -38,6 +38,8 @@ export const Secondary = styled.h2`
    text-transform: uppercase;
    font-weight: 700;
    background-image: linear-gradient(to right, #7dd56f, #28b487);
+   -webkit-background-clip: text;
+   background-clip: text;
    color: transparent;
    letter-spacing: 0.1rem;
    line-height: 1.3;
@@ -53,10 +55,5 @@ export const Secondary = styled.h2`
 
 export const Tertiary = styled(GradientBackgound)`
    font-size: 2.75rem;
-   text-align: right;
-   position: absolute;
-   bottom: 1rem;
-   right: 2rem;
-   width: 70%;
    z-index: 10;
 `;

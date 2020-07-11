@@ -13,7 +13,7 @@ import {
 
 const Header = () => (
    <Wrapper>
-      <Logo>
+      <Logo to="/">
          <img src="img/logo-white.png" alt="Natours logo" />
       </Logo>
 
@@ -28,8 +28,10 @@ const Header = () => (
             <UserImage src="img/users/user-1.jpg" alt="User photo" />
             <span>Jonas</span>
          </NavLink> */}
-         <NavLink>Log in</NavLink>
-         <NavLink cta>Sign up</NavLink>
+         <NavLink to="/login">Log in</NavLink>
+         <NavLink to="/signup" cta>
+            Sign up
+         </NavLink>
       </UserNav>
    </Wrapper>
 );

@@ -5,9 +5,9 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './global.styles';
 import { theme } from './styles/theme';
 
-import TourCard from './components/tour-card/tour-card.component';
 import HomePage from './pages/homepage/homepage.component';
 import Header from './components/header/header.component';
+import Login from './pages/login/login.component';
 
 function App() {
    return (
@@ -16,7 +16,7 @@ function App() {
          <Header />
          <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/tour" component={TourCard} />
+            <Route path="/login" component={Login} />
          </Switch>
       </ThemeProvider>
    );
