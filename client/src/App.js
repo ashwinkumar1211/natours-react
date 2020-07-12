@@ -8,6 +8,7 @@ import { theme } from './styles/theme';
 import HomePage from './pages/homepage/homepage.component';
 import Header from './components/header/header.component';
 import Login from './pages/login/login.component';
+import SignUp from './pages/signup/signup.component';
 
 function App() {
    return (
@@ -17,6 +18,7 @@ function App() {
          <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={Login} />
+            <Route pathh="/signup" component={SignUp} />
          </Switch>
       </ThemeProvider>
    );

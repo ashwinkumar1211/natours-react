@@ -4,18 +4,19 @@ import { connect } from 'react-redux';
 import TourCard from '../../components/tour-card/tour-card.component';
 import Spinner from '../../components/spinner/spinner.component';
 
-import { fetchToursStart } from '../../redux/tour/tour.actions';
+import { fetchTours } from '../../redux/tour/tour.actions';
+import { isActionPending } from '../../redux/ui/ui.selectors';
 
 import { Wrapper, SpinnerContainer } from './homepage.styles';
 
-const HomePage = ({ tours, isFetching, fetchToursStart }) => {
+const HomePage = ({ tours, isLoading, fetchTours }) => {
    useEffect(() => {
-      fetchToursStart();
-   }, [fetchToursStart]);
+      fetchTours();
+   }, [fetchTours]);
 
    return (
       <Wrapper>
-         {isFetching ? (
+         {isLoading ? (
             <SpinnerContainer>
                <Spinner size={80} />
             </SpinnerContainer>
@@ -28,11 +29,11 @@ const HomePage = ({ tours, isFetching, fetchToursStart }) => {
 
 const mapStateToProps = (state) => ({
    tours: state.tour.tours,
-   isFetching: state.tour.isFetching,
+   isLoading: isActionPending(state, fetchTours),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-   fetchToursStart: () => dispatch(fetchToursStart()),
+   fetchTours: () => dispatch(fetchTours()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

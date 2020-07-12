@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 
-import { Wrapper, Title, Form, Label, Input, Button } from './login-card.styles';
+import { Wrapper, Title, Form, Label, Input, Button } from './signup-card.styles';
 
 const handleChange = (e, setState) => {
    const { value, name } = e.target;
    setState({ [name]: value });
 };
 
-const LoginCard = () => {
-   const [state, setState] = useState({ email: '', password: '' });
+const SignUpCard = () => {
+   const [state, setState] = useState({ email: '', password: '', confirmPassword: '' });
 
-   const { email, password } = state;
+   const { email, password, confirmPassword } = state;
 
    return (
       <Wrapper>
-         <Title>Log into your account</Title>
+         <Title>Create a new account</Title>
 
          <Form>
             <Label htmlFor="email">Email address</Label>
@@ -35,10 +35,19 @@ const LoginCard = () => {
                onChange={(e) => handleChange(e, setState)}
             />
 
-            <Button>Log in</Button>
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Input
+               name="confirmPassword"
+               type="password"
+               placeholder="••••••••"
+               value={confirmPassword}
+               onChange={(e) => handleChange(e, setState, state)}
+            />
+
+            <Button>Sign Up</Button>
          </Form>
       </Wrapper>
    );
 };
 
-export default LoginCard;
+export default SignUpCard;

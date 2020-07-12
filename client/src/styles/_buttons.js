@@ -1,29 +1,25 @@
 import styled, { css } from 'styled-components';
 
 const Button = styled.a`
-   &,
-   &:link,
-   &:visited {
-      display: inline-block;
-      font-size: 1.6rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      text-decoration: none;
+   display: inline-block;
+   font-size: 1.6rem;
+   font-weight: 400;
+   text-transform: uppercase;
+   text-decoration: none;
 
-      padding: 1.4rem 3rem;
-      border-radius: 10rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s;
+   padding: 1.4rem 3rem;
+   border-radius: 10rem;
+   border: none;
+   cursor: pointer;
+   transition: all 0.4s;
 
-      ${(props) =>
-         props.small &&
-         css`
+   ${(props) =>
+      props.small &&
+      css`
             font-size: 1.4rem;
             padding: 1.25rem 3rem
             transition: all 0.2s;
          `}
-   }
 
    &:hover {
       transform: translateY(-3px);
