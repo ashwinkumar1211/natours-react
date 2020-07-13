@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
    Wrapper,
@@ -8,32 +9,48 @@ import {
    SearchButton,
    SearchInput,
    UserNav,
-   // UserImage,
+   UserImage,
 } from './header.styles';
 
-const Header = () => (
-   <Wrapper>
-      <Logo to="/">
-         <img src="img/logo-white.png" alt="Natours logo" />
-      </Logo>
+const Header = ({ userName, userPhoto }) => {
+   const renderIfLoggedIn = () => (
+      <React.Fragment>
+         <NavLink to="/">My bookings</NavLink>
+         <NavLink to="/">
+            <UserImage src={`img/users/${userPhoto}`} />
+            <span>{userName}</span>
+         </NavLink>
+      </React.Fragment>
+   );
 
-      <SearchWrapper>
-         <SearchInput type="text" placeholder="Search tours" />
-         <SearchButton url={`img/icons.svg#icon-search`} />
-      </SearchWrapper>
-
-      <UserNav>
-         {/* <NavLink>My bookings</NavLink>
-         <NavLink>
-            <UserImage src="img/users/user-1.jpg" alt="User photo" />
-            <span>Jonas</span>
-         </NavLink> */}
+   const renderIfNotLoggedIn = () => (
+      <React.Fragment>
          <NavLink to="/login">Log in</NavLink>
          <NavLink to="/signup" cta>
             Sign up
          </NavLink>
-      </UserNav>
-   </Wrapper>
-);
+      </React.Fragment>
+   );
 
-export default Header;
+   return (
+      <Wrapper>
+         <Logo to="/">
+            <img src="img/logo-white.png" alt="Natours logo" />
+         </Logo>
+
+         <SearchWrapper>
+            <SearchInput type="text" placeholder="Search tours" />
+            <SearchButton url={`img/icons.svg#icon-search`} />
+         </SearchWrapper>
+
+         <UserNav>{userName ? renderIfLoggedIn() : renderIfNotLoggedIn()}</UserNav>
+      </Wrapper>
+   );
+};
+
+const mapStateToProps = (state) => ({
+   userName: state.user.userDetails.name,
+   userPhoto: state.user.userDetails.photo,
+});
+
+export default connect(mapStateToProps)(Header);

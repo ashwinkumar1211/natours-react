@@ -1,26 +1,26 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import axios from 'axios';
 
 import TourActionTypes from './tour.types';
 
 import { fetchToursSuccess, fetchToursFailure } from './tour.actions';
 import { startAction, stopAction } from '../ui/ui.actions';
 
-function* fetchToursAsync(...args) {
-   const actionName = args[0].type;
+function* fetchToursAsync({ type }) {
+   const actionName = type;
 
    try {
       // Push action into pending ui actions
       yield put(startAction(actionName));
 
-      // Perfrom async op
-      const response = yield axios.get(`http://localhost:5000/api/v1/tours/`);
-      yield put(fetchToursSuccess(response.data.data.tours));
+      // Perfrom async ops
+      const response = yield fetch(`http://localhost:5000/api/v1/tours/`);
+      const data = yield response.json();
 
-      // Remove action from pending ui actions
+      yield put(fetchToursSuccess(data.data.tours));
    } catch (error) {
       yield put(fetchToursFailure(error));
    } finally {
+      // Remove action from pending ui actions
       yield put(stopAction(actionName));
    }
 }

@@ -1,53 +1,87 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import { Wrapper, Title, Form, Label, Input, Button } from './signup-card.styles';
 
-const handleChange = (e, setState) => {
-   const { value, name } = e.target;
-   setState({ [name]: value });
-};
+import { signUp } from '../../redux/user/user.actions';
+import { isActionPending } from '../../redux/ui/ui.selectors';
 
-const SignUpCard = () => {
-   const [state, setState] = useState({ email: '', password: '', confirmPassword: '' });
+const SignUpCard = ({ isLoading, signUp }) => {
+   const [state, setState] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
 
-   const { email, password, confirmPassword } = state;
+   const { name, email, password, passwordConfirm } = state;
+
+   console.log(isLoading);
+
+   const handleChange = (e) => {
+      const { value, name } = e.target;
+      setState({ ...state, [name]: value });
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      signUp({ name, email, password, passwordConfirm });
+   };
 
    return (
       <Wrapper>
          <Title>Create a new account</Title>
 
-         <Form>
+         <Form onSubmit={handleSubmit}>
+            <Label htmlFor="email">Your name</Label>
+            <Input
+               name="name"
+               type="text"
+               required
+               placeholder="John Doe"
+               value={name}
+               onChange={handleChange}
+            />
+
             <Label htmlFor="email">Email address</Label>
             <Input
                name="email"
                type="email"
+               required
                placeholder="you@example.com"
                value={email}
-               onChange={(e) => handleChange(e, setState)}
+               onChange={handleChange}
             />
 
             <Label htmlFor="password">Password</Label>
             <Input
                name="password"
                type="password"
+               required
                placeholder="••••••••"
                value={password}
-               onChange={(e) => handleChange(e, setState)}
+               onChange={handleChange}
             />
 
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Label htmlFor="passwordConfirm">Confirm Password</Label>
             <Input
-               name="confirmPassword"
+               name="passwordConfirm"
                type="password"
+               required
                placeholder="••••••••"
-               value={confirmPassword}
-               onChange={(e) => handleChange(e, setState, state)}
+               value={passwordConfirm}
+               onChange={handleChange}
             />
 
-            <Button>Sign Up</Button>
+            <Button as="button" type="submit">
+               Sign Up {isLoading && 'Loading...'}
+            </Button>
          </Form>
       </Wrapper>
    );
 };
 
-export default SignUpCard;
+const mapStateToProps = (state) => ({
+   isLoading: isActionPending(state, signUp),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+   signUp: (userInfo) => dispatch(signUp(userInfo)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpCard);
