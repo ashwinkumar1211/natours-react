@@ -25,6 +25,10 @@ export const saveAuthToken = (token) => ({
    payload: token,
 });
 
+export const logout = () => ({
+   type: UserActionTypes.LOGOUT,
+});
+
 // SAGA ACTIONS
 
 export const login = (email, password) => ({

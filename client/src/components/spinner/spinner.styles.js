@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { ReactComponent as SVG } from '../../assets/spinner.svg';
+import { ReactComponent as SVG } from '../../assets/spinner-1.5x.svg';
 
 export const SpinnerOverlay = styled.div`
    height: 20rem;
@@ -17,4 +17,12 @@ export const SpinnerOverlay = styled.div`
 export const SpinnerSVG = styled(SVG)`
    height: 100%;
    width: 100%;
+
+   ${({ color }) =>
+      color &&
+      css`
+         path {
+            fill: ${color};
+         }
+      `}
 `;

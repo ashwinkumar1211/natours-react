@@ -11,8 +11,6 @@ const SignUpCard = ({ isLoading, signUp }) => {
 
    const { name, email, password, passwordConfirm } = state;
 
-   console.log(isLoading);
-
    const handleChange = (e) => {
       const { value, name } = e.target;
       setState({ ...state, [name]: value });
@@ -68,7 +66,7 @@ const SignUpCard = ({ isLoading, signUp }) => {
                onChange={handleChange}
             />
 
-            <Button as="button" type="submit">
+            <Button type="submit" isLoading={isLoading} green>
                Sign Up {isLoading && 'Loading...'}
             </Button>
          </Form>

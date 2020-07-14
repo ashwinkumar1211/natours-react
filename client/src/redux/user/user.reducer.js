@@ -32,6 +32,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
             authToken: action.payload,
          };
 
+      // LOGOUT
+      case UserActionTypes.LOGOUT:
+         return INITIAL_STATE;
+
       default:
          return state;
    }

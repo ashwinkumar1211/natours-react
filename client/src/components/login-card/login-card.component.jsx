@@ -45,8 +45,8 @@ const LoginCard = ({ login, isLoading }) => {
                onChange={handleChange}
             />
 
-            <Button as="button" type="submit">
-               Log in {isLoading && 'Loading...'}
+            <Button type="submit" isLoading={isLoading} green>
+               Log in
             </Button>
          </Form>
       </Wrapper>

@@ -12,13 +12,18 @@ import {
    UserImage,
 } from './header.styles';
 
-const Header = ({ userName, userPhoto }) => {
+import { logout } from '../../redux/user/user.actions';
+
+const Header = ({ userName, userPhoto, logout }) => {
    const renderIfLoggedIn = () => (
       <React.Fragment>
          <NavLink to="/">My bookings</NavLink>
          <NavLink to="/">
             <UserImage src={`img/users/${userPhoto}`} />
             <span>{userName}</span>
+         </NavLink>
+         <NavLink to="/login" onClick={logout}>
+            Log out
          </NavLink>
       </React.Fragment>
    );
@@ -53,4 +58,8 @@ const mapStateToProps = (state) => ({
    userPhoto: state.user.userDetails.photo,
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => ({
+   logout: () => dispatch(logout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

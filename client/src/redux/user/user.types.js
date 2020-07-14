@@ -6,6 +6,9 @@ const UserActionTypes = {
    LOGIN_SUCCESS: `${namespace} LOGIN_SUCCESS`,
    LOGIN_FAILURE: `${namespace} LOGIN_FAILURE`,
 
+   // Logout
+   LOGOUT: `${namespace} LOGOUT`,
+
    // Sign up
    SIGN_UP: `${namespace} SIGN_UP`,
    SIGN_UP_SUCCESS: `${namespace} SIGN_UP_SUCCESS`,

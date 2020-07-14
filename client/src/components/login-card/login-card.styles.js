@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 import FormInput from '../form-input/form-input.component';
+import ButtonComponent from '../button/button.component';
 
 import * as Headings from '../../styles/_headings';
-import * as Buttons from '../../styles/_buttons';
 
 // CARD
 
@@ -34,4 +34,4 @@ export const Input = styled(FormInput)`
    margin-bottom: 3rem;
 `;
 
-export const Button = styled(Buttons.Green)``;
+export const Button = styled(ButtonComponent)``;
