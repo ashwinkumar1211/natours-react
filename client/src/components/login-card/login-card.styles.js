@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import FormInput from '../form-input/form-input.component';
 import ButtonComponent from '../button/button.component';
+import AlertComponent from '../alert/alert.component';
 
 import * as Headings from '../../styles/_headings';
 
@@ -13,6 +14,8 @@ export const Wrapper = styled.div`
    box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
    padding: 5rem 7rem;
    border-radius: 5px;
+
+   position: relative;
 `;
 
 // FORM
@@ -35,3 +38,10 @@ export const Input = styled(FormInput)`
 `;
 
 export const Button = styled(ButtonComponent)``;
+
+export const Alert = styled(AlertComponent)`
+   position: absolute;
+   top: 0;
+   right: 2rem;
+   transform: translateY(-70%);
+`;

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Wrapper, Title, Form, Label, Input, Button } from './login-card.styles';
+import { Wrapper, Title, Form, Label, Input, Button, Alert } from './login-card.styles';
 
 import { login } from '../../redux/user/user.actions';
-import { isActionPending } from '../../redux/ui/ui.selectors';
+import { isActionPending, getAlert } from '../../redux/ui/ui.selectors';
 
-const LoginCard = ({ login, isLoading }) => {
+const LoginCard = ({ login, isLoading, alert }) => {
    const [state, setState] = useState({ email: '', password: '' });
    const { email, password } = state;
 
@@ -18,6 +18,11 @@ const LoginCard = ({ login, isLoading }) => {
    const handleSubmit = (e) => {
       e.preventDefault();
       login(email, password);
+   };
+
+   const renderAlert = () => {
+      const { message, type } = alert;
+      return message && <Alert type={type}>{message}</Alert>;
    };
 
    return (
@@ -48,6 +53,8 @@ const LoginCard = ({ login, isLoading }) => {
             <Button type="submit" isLoading={isLoading} green>
                Log in
             </Button>
+
+            {renderAlert()}
          </Form>
       </Wrapper>
    );
@@ -59,6 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
    isLoading: isActionPending(state, login),
+   alert: getAlert(state, login),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginCard);

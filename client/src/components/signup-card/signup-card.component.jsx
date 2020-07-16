@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Wrapper, Title, Form, Label, Input, Button } from './signup-card.styles';
+import { Wrapper, Title, Form, Label, Input, Button, Alert } from './signup-card.styles';
 
 import { signUp } from '../../redux/user/user.actions';
-import { isActionPending } from '../../redux/ui/ui.selectors';
+import { isActionPending, getAlert } from '../../redux/ui/ui.selectors';
 
-const SignUpCard = ({ isLoading, signUp }) => {
+const SignUpCard = ({ isLoading, signUp, alert }) => {
    const [state, setState] = useState({ name: '', email: '', password: '', passwordConfirm: '' });
 
    const { name, email, password, passwordConfirm } = state;
@@ -19,6 +19,11 @@ const SignUpCard = ({ isLoading, signUp }) => {
    const handleSubmit = (e) => {
       e.preventDefault();
       signUp({ name, email, password, passwordConfirm });
+   };
+
+   const renderAlert = () => {
+      const { message, type } = alert;
+      return message && <Alert type={type}>{message}</Alert>;
    };
 
    return (
@@ -67,8 +72,10 @@ const SignUpCard = ({ isLoading, signUp }) => {
             />
 
             <Button type="submit" isLoading={isLoading} green>
-               Sign Up {isLoading && 'Loading...'}
+               Sign Up
             </Button>
+
+            {renderAlert()}
          </Form>
       </Wrapper>
    );
@@ -76,6 +83,7 @@ const SignUpCard = ({ isLoading, signUp }) => {
 
 const mapStateToProps = (state) => ({
    isLoading: isActionPending(state, signUp),
+   alert: getAlert(state, signUp),
 });
 
 const mapDispatchToProps = (dispatch) => ({

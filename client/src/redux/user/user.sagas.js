@@ -1,4 +1,4 @@
-import { takeLatest, all, call, put, delay } from 'redux-saga/effects';
+import { takeLatest, all, call, put } from 'redux-saga/effects';
 
 import UserActionTypes from './user.types';
 
@@ -9,7 +9,7 @@ import {
    signUpFailure,
    saveAuthToken,
 } from './user.actions';
-import { startAction, stopAction } from '../ui/ui.actions';
+import { startAction, stopAction, alert } from '../ui/ui.actions';
 
 function* loginUserAsync({ type, payload }) {
    const actionName = type;
@@ -39,8 +39,11 @@ function* loginUserAsync({ type, payload }) {
 
       yield put(loginSuccess(data.data.user));
       yield put(saveAuthToken(data.token));
+
+      yield put(alert(actionName, 'Login success', 'success'));
    } catch (error) {
       yield put(loginFailure(error.message));
+      yield put(alert(actionName, error.message, 'error'));
    } finally {
       // Remove action from pending ui actions
       yield put(stopAction(actionName));
@@ -53,8 +56,6 @@ function* signUpUserAsync({ type, payload }) {
    try {
       // Push action into pending ui actions
       yield put(startAction(actionName));
-
-      yield delay(2000);
 
       // Perform async op
       const options = {
@@ -75,10 +76,15 @@ function* signUpUserAsync({ type, payload }) {
          if (data.error.code === 11000) throw Error('Email already exists');
       }
 
+      console.log(data);
+
       yield put(signUpSuccess(data.data.user));
       yield put(saveAuthToken(data.token));
+      yield put(alert(actionName, 'Sign up success', 'success'));
    } catch (error) {
+      console.log(error);
       yield put(signUpFailure(error.message));
+      yield put(alert(actionName, error.message, 'error'));
    } finally {
       // Remove action from pending ui actions
       yield put(stopAction(actionName));

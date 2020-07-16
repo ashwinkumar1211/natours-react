@@ -13,3 +13,20 @@ export const stopAction = (actionName) => ({
       name: actionName,
    },
 });
+
+export const showAlert = (actionName, message, type) => ({
+   type: UIActionTypes.SHOW_ALERT,
+   payload: { actionName, message, type },
+});
+
+export const hideAlert = (actionName) => ({
+   type: UIActionTypes.HIDE_ALERT,
+   payload: { actionName },
+});
+
+// SAGA ACTIONS
+
+export const alert = (actionName, message, type, duration) => ({
+   type: UIActionTypes.ALERT,
+   payload: { actionName, message, type, duration },
+});

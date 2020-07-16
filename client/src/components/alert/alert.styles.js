@@ -31,8 +31,8 @@ export const AlertWrapper = styled.div`
    align-items: center;
    justify-content: center;
 
-   ${(props) => props.success && successStyles}
-   ${(props) => props.error && errorStyles}
+   ${(props) => props.type === 'success' && successStyles}
+   ${(props) => props.type === 'error' && errorStyles}
 `;
 
 export const Text = styled.span`
