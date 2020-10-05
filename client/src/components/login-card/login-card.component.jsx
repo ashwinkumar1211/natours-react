@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Wrapper, Title, Form, Label, Input, Button, Alert } from './login-card.styles';
 
 import { login } from '../../redux/user/user.actions';
 import { isActionPending, getAlert } from '../../redux/ui/ui.selectors';
+import { isAuthenticated } from '../../redux/user/user.selectors';
 
-const LoginCard = ({ login, isLoading, alert }) => {
+const LoginCard = ({ login, isLoading, alert, isAuthenticated }) => {
    const [state, setState] = useState({ email: '', password: '' });
    const { email, password } = state;
+   const history = useHistory();
 
    const handleChange = (e) => {
       const { value, name } = e.target;
@@ -19,6 +22,12 @@ const LoginCard = ({ login, isLoading, alert }) => {
       e.preventDefault();
       login(email, password);
    };
+
+   useEffect(() =>{          
+      if(isAuthenticated){               
+         history.push("/");
+      }   
+   },[isAuthenticated]);
 
    const renderAlert = () => {
       const { message, type } = alert;
@@ -67,6 +76,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
    isLoading: isActionPending(state, login),
    alert: getAlert(state, login),
+   isAuthenticated : isAuthenticated(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginCard);
