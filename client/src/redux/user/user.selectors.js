@@ -1,1 +1,1 @@
-export const isAuthenticated = (state) => Boolean(Object.keys(state.user.userDetails).length!=0)
+export const isAuthenticated = (state) => (Object.keys(state.user.userDetails).length !== 0)
